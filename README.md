@@ -1,3 +1,16 @@
+To run:
+1) Clone repository from github
+2) Create tomcat server as data source
+3) Run resources/openhouse_exercise.sql
+4) Connect to end points to alter or view data:
+
+Display all logs:                           GET                 /logs
+Display a single log:                       GET                 /logs/{id}
+Add log:                                    POST                /logs               Add request body to add data
+Update log:                                 PUT                 /logs               Add request body to add data
+Delete log:                                 DELETE              /logs/{id}
+Display logs based on search criteria:      GET                 /logs/search        Add request body to add search criteria
+
 All documentation has been done using javadoc
 
 There is one small bug, which after several hours I was unable to fix.  When data is sent to the POST endpoint,

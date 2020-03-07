@@ -1,12 +1,8 @@
 package com.connoresau.codingtest.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 
 @Entity
 @Table(name = "action")
@@ -93,8 +89,7 @@ public class Action {
      */
     public void setTime(String time) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
-        LocalDateTime newTime = LocalDateTime.parse(time, formatter);
-        this.time = newTime;
+        this.time = LocalDateTime.parse(time, formatter);
     }
 
     /**

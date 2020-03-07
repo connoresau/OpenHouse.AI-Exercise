@@ -80,7 +80,7 @@ public class LogRestController {
     public Log updateLog(@RequestBody Log log) {
 
         //if the log id does not exist, throw an exception
-        if (logService.get(log.getLogId()) == null) {
+        if (!logService.get(log.getLogId()).isPresent()) {
             throw new LogNotFoundException();
         }
 

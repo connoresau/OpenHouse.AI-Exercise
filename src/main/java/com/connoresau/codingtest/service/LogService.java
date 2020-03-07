@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LogService {
@@ -82,8 +83,8 @@ public class LogService {
      * @return The log that was retrieved
      */
     @Transactional
-    public Log get(int id) {
-        return logDAO.getOne(id);
+    public Optional<Log> get(int id) {
+        return logDAO.findById(id);
     }
 
     /**

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/logs")
@@ -32,8 +33,14 @@ public class LogRestController {
      * @return The log that was retrieved
      */
     @GetMapping("/{logId}")
-    public Log getLog(@PathVariable int logId) {
-        return logService.get(logId);
+    public Optional<Log> getLog(@PathVariable int logId) {
+        Optional<Log> log =  logService.get(logId);
+
+        if (!log.isPresent()) {
+            throw new LogNotFoundException();
+        }
+
+        return log;
     }
 
     /**
@@ -87,9 +94,9 @@ public class LogRestController {
      */
     @DeleteMapping("/{id}")
     public String deleteLog(@PathVariable int id) {
-        Log log = logService.get(id);
+        Optional<Log> log = logService.get(id);
 
-        if (log == null) {
+        if (!log.isPresent()) {
             throw new LogNotFoundException();
         }
 
